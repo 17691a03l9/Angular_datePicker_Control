@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { DateFilterFn } from '@angular/material/datepicker';
 
@@ -8,92 +9,117 @@ import { DateFilterFn } from '@angular/material/datepicker';
   styleUrls: ['./weakdays.component.scss']
 })
 export class WeakdaysComponent implements OnInit{
-  selectedDates: string = "1-7"; // Default to 1-7 Days
+  selectedDates:String="2"; // Default to 1-7 Days
   selectedDate:any;
-  dateFilter: DateFilterFn<Date | null> = (date: Date | null) => true;
+  selectedDays:String="2"; // Default to 1-7 Days
+  selectedDat:any;
+  Date: DateFilterFn<Date | null> = (date: Date | null) => true;
 
-  constructor(){}
-  updateDates() {
-    // Update the date range based on the selected option
-    const today = new Date();
-    const rangeParts = this.selectedDates.split('-');
-    console.log(rangeParts,"rangeParts")
-    const startDays = parseInt(rangeParts[0]);
-    const endDays = parseInt(rangeParts[1]);
-    console.log(endDays,"endDays")
-    console.log(startDays,"startDays")
+  constructor(){
+  }
+  handleDateChange(event: Date): void {
+    this.selectedDate = event;
+    console.log(this.selectedDate,"selectedDate")
+  }
+  handleChange(event: Date): void {
+    this.selectedDat = event;
+    console.log(this.selectedDate,"selectedDate")
+  }
 
-    // this.startDate = new Date(today.setDate(startDays));
-    // console.log(this.startDate,"startDate")
-
-    // this.endDate = new Date(today.setDate(endDays));
-    // console.log(this.endDate,"endDate")
-
-    // this.setminDate();
-    // this.setmaxDate();
-   }
   ngOnInit(): void {
     
   }
 
-  setNewFilter(isWeekend: boolean): void {
-    this.dateFilter = isWeekend
-      ? (date: Date | null) => this.isWeekend(date)
-      : (date: Date | null) => true;
-  }
 
-  isWeekend: DateFilterFn<Date | null> = (date: Date | null) => {
-    if (!date) {
+  isDateSelectable: DateFilterFn<Date | null> = (date: Date | null): boolean => {
+    if (!this.selectedDates || !date) {
       return false;
     }
-    console.log(date,"date")
-    const day = date.getDay();
-    console.log(day,"day")
+    // const selectedDay = +this.selectedDates; // Convert selectedDates to a number
+    // console.log(selectedDay,"selectedDay")
+    // const isDaySelected = this.isDay(selectedDay, date);
+    // console.log(isDaySelected,"isDaySelected")
 
-    const week = this.selectedDate.getDay();
-    console.log(week,"week")
+    const today = new Date();
+    const daysDifference = (date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
+    switch (this.selectedDates) {
+      case '0':
+        return this.isDay(0, date) && daysDifference >= 0 && daysDifference <= 21;
+      case '1':
+        return this.isDay(1, date) && daysDifference >= 0 && daysDifference <= 21;
+      case '2':
+        return this.isDay(2, date) && daysDifference >= 0 && daysDifference <= 21;
+      case '3':
+        return this.isDay(3, date) && daysDifference >= 0 && daysDifference <= 21;
+      case '4':
+        return this.isDay(4, date) && daysDifference >= 0 && daysDifference <= 21;
+      case '5':
+        return this.isDay(5, date) && daysDifference >= 0 && daysDifference <= 21;
+      case '6':
+        return this.isDay(6, date) && daysDifference >= 0 && daysDifference <= 21;
+      default:
+        return false;
+    }
+  }
+  isDateSelect: DateFilterFn<Date | null> = (date: Date | null): boolean => {
+    if (!this.selectedDays || !date) {
+      return false;
+    }
+    // const selectedDay = +this.selectedDates; // Convert selectedDates to a number
+    // console.log(selectedDay,"selectedDay")
+    // const isDaySelected = this.isDay(selectedDay, date);
+    // console.log(isDaySelected,"isDaySelected")
 
-    return day=== week
-
-  };
-
+    const today = new Date();
+    const daysDifference = (date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
+    switch (this.selectedDays) {
+      case '0':
+        return this.isDay(0, date) && daysDifference >= -7 && daysDifference <= 0;
+      case '00':
+        return this.isDay(0, date) && daysDifference >= 0 && daysDifference <= 7;
+      case '000':
+        return this.isDay(0, date) && daysDifference >= 8 && daysDifference <= 14;
+      case '1':
+        return this.isDay(0, date) && daysDifference >= -7 && daysDifference <= 0;
+      case '11':
+        return this.isDay(0, date) && daysDifference >= 0 && daysDifference <= 7;
+      case '111':
+        return this.isDay(0, date) && daysDifference >= 8 && daysDifference <= 14;
+      case '2':
+        return this.isDay(0, date) && daysDifference >= -7 && daysDifference <= 0;
+      case '22':
+        return this.isDay(0, date) && daysDifference >= 0 && daysDifference <= 7;
+      case '222':
+        return this.isDay(0, date) && daysDifference >= 8 && daysDifference <= 14;
+      case '3':
+        return this.isDay(0, date) && daysDifference >= -7 && daysDifference <= 0;
+      case '33':
+        return this.isDay(0, date) && daysDifference >= 0 && daysDifference <= 7;
+      case '333':
+        return this.isDay(0, date) && daysDifference >= 8 && daysDifference <= 14;
+      case '4':
+        return this.isDay(0, date) && daysDifference >= -7 && daysDifference <= 0;
+      case '44':
+        return this.isDay(0, date) && daysDifference >= 0 && daysDifference <= 7;
+      case '444':
+        return this.isDay(0, date) && daysDifference >= 8 && daysDifference <= 14;
+      case '5':
+        return this.isDay(0, date) && daysDifference >= -7 && daysDifference <= 0;
+      case '55':
+        return this.isDay(0, date) && daysDifference >= 0 && daysDifference <= 7;
+      case '555':
+        return this.isDay(0, date) && daysDifference >= 8 && daysDifference <= 14;
+      case '6':
+        return this.isDay(0, date) && daysDifference >= -7 && daysDifference <= 0;
+      case '66':
+        return this.isDay(0, date) && daysDifference >= 0 && daysDifference <= 7;
+      case '666':
+        return this.isDay(0, date) && daysDifference >= 8 && daysDifference <= 14;
+          default:
+        return false;
+    }
+  }
+  private isDay(day: number, date: Date): boolean {
+    return date.getDay() === day;
+  }
 }
-// import { Component, OnInit } from '@angular/core';
-
-// import { DateFilterFn } from '@angular/material/datepicker';
-
-// @Component({
-//   selector: 'app-weakdays',
-//   templateUrl: './weakdays.component.html',
-//   styleUrls: ['./weakdays.component.scss'],
-// })
-// export class WeakdaysComponent implements OnInit {
-//   selectedDate: any;
-//   selectedDay: number | null = null;
-//   dateFilter: DateFilterFn<Date | null> = () => true;
-
-//   constructor() {}
-
-//   ngOnInit(): void {}
-
-//   setNewFilter(): void {
-//     if (this.selectedDay !== null) {
-//       this.dateFilter = (date: Date | null) => this.isDayOfWeek(date, this.selectedDay);
-//     } else {
-//       // Reset the filter if no day is selected
-//       this.dateFilter = () => true;
-//     }
-//   }
-
-//   isDayOfWeek(date: Date | null, selectedDay: number | null): boolean {
-//     if (!date || selectedDay === null) {
-//       return false;
-//     }
-
-//     // Sunday is represented as 0 in JavaScript, so add 1 to match the selectedDay values
-//     const dayOfWeek = (date.getDay() + 1) % 7;
-
-//     return dayOfWeek === selectedDay;
-//   }
-// }
-

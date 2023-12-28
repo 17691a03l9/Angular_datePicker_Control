@@ -22,6 +22,8 @@
     "@angular/router": "^14.2.0",
     "@material-ui/core": "^4.12.4",
     "moment": "^2.29.4",
+    "ng-pick-datetime": "^6.0.4",
+    "ng2-datepicker": "^12.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
