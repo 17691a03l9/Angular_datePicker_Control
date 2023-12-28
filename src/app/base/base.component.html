@@ -1,0 +1,6 @@
+<form #addCustomer="ngForm">
+    <input type="text" ngModel name="name"><br>
+    <input type="password" ngModel name="password"><br>
+    <input type="text" ngModel name="email"><br>
+    <button (click)="submit(addCustomer)" [disabled]="!addCustomer.valid">submit</button>
+</form>

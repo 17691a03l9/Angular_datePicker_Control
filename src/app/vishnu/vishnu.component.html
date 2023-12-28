@@ -1,0 +1,31 @@
+<!-- <mat-form-field>
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker" [min]='mindate' [max]="maxdate">
+      <input matStartDate placeholder="Start date" [(ngModel)]="startDate" (ngModelChange)="setminDate()">
+      <input matEndDate placeholder="End date" [(ngModel)]="endDate" (ngModelChange)="setmaxDate()" >
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field> -->
+  <mat-form-field>
+    <mat-label>Select date range</mat-label>
+    <mat-select [(ngModel)]="selectedRange" (ngModelChange)="updateDateRange()">
+      <mat-option value="1-7">1-7 Dates</mat-option>
+      <mat-option value="8-14">8-14 Dates</mat-option>
+      <mat-option value="15-21">15-21 Dates</mat-option>
+      <mat-option value="22-29">22-29 Dates</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker" [min]="mindate" [max]="maxdate">
+      <input matStartDate placeholder="Start date" [(ngModel)]="startDate" (ngModelChange)="setminDate()">
+      <input matEndDate placeholder="End date" [(ngModel)]="endDate" (ngModelChange)="setmaxDate()">
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+  

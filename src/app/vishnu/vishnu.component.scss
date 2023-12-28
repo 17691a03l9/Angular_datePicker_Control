@@ -1,0 +1,18 @@
+.enable-date {
+    /* Your styles for enabled dates */
+  }
+  
+  .disable-date {
+    pointer-events: none; /* Disable interaction with the date */
+    opacity: 0.5; /* Optionally, reduce the opacity for disabled dates */
+    /* Your styles for disabled dates */
+  }
+
+  .enable-date {
+    background-color: lightgreen;
+  }
+  
+  .disable-date {
+    background-color: #e0e0e0;
+    pointer-events: none; /* Disable interaction with the date */
+  }
