@@ -16,6 +16,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { VishnuComponent } from './vishnu/vishnu.component';
 import { WeakdaysComponent } from './weakdays/weakdays.component';
+import { IndividualDatesComponent } from './individual-dates/individual-dates.component';
 
 // import { DatepickercontrolComponent } from './datepickercontrol/datepickercontrol.component';
 
@@ -25,6 +26,7 @@ import { WeakdaysComponent } from './weakdays/weakdays.component';
     VishnuComponent,
     BaseComponent,
     WeakdaysComponent,
+    IndividualDatesComponent,
     // DatepickercontrolComponent
   ],
   imports: [

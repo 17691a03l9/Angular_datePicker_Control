@@ -1,0 +1,17 @@
+<mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="selectedDate" [matDatepickerFilter]="isDateSelectable" (ngModelChange)="handleDateChange($event)"/>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Select date range</mat-label>
+    <mat-select [(ngModel)]="selectedDates">
+      <mat-option value="">Select a Day</mat-option>
+      <mat-option value="5-20-21-5">5-20 and 21-5</mat-option>
+      <mat-option value="6-20-21-LDM">6-20 and 21-LDM</mat-option>
+    </mat-select>
+    
+  </mat-form-field>
+
+
+
