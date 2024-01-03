@@ -84,7 +84,7 @@ export class IndividualDatesComponent implements OnInit {
   switch (this.selectedDates) {
     case '5-20-21-5':
       return [startDay, endDay].indexOf(+date.getDate()) !== -1 && daysDifference>=0 && daysDifference<=31;
-      case '6-20-21-LDM':
+    case '6-20-21-LDM':
       return [startDay, endDay].indexOf(+date.getDate()) !== -1;
       default:
         return false;
