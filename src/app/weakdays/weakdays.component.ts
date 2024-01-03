@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { DateFilterFn } from '@angular/material/datepicker';
@@ -6,16 +6,23 @@ import { DateFilterFn } from '@angular/material/datepicker';
 @Component({
   selector: 'app-weakdays',
   templateUrl: './weakdays.component.html',
-  styleUrls: ['./weakdays.component.scss']
+  styleUrls: ['./weakdays.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class WeakdaysComponent implements OnInit{
   selectedDates:String=""; // Default to 1-7 Days
   selectedDate:any;
   selectedDays:String=""; // Default to 1-7 Days
   selectedDat:any;
+  rangeselectedDates: string = ""; // Default to 1-7 Days
+  rangeselectedDate: any;
   Date: DateFilterFn<Date | null> = (date: Date | null) => true;
 
   constructor(){
+  }
+  handlerangeDateChange(event: Date): void {
+    this.rangeselectedDate = event;
+    console.log(this.rangeselectedDate, "selectedDate");
   }
   handleDateChange(event: Date): void {
     this.selectedDate = event;
@@ -122,4 +129,27 @@ export class WeakdaysComponent implements OnInit{
   private isDay(day: number, date: Date): boolean {
     return date.getDay() === day;
   }
+  isDaterangeSelectable: DateFilterFn<Date | null> = (date: Date | null):any => {
+    if (!this.rangeselectedDates || !date) {
+      return false;
+    }
+
+    const rangeParts = this.rangeselectedDates.split('-');
+    const startDay = parseInt(rangeParts[1]);
+    const endDay = parseInt(rangeParts[3]);
+
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth(); // January is 0 in JavaScript
+    const daysDifference = (date.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24);
+
+  console.log(currentMonth === startDay && date.getDate() === 20,(currentMonth + 1) % 12 === endDay && date.getDate() === 5,"currentMonth")
+  switch (this.rangeselectedDates) {
+    case '5-20-21-5':
+      return [startDay, endDay].indexOf(+date.getDate()) !== -1 && daysDifference>=0 && daysDifference<=31;
+    case '6-20-21-LDM':
+      return [startDay, endDay].indexOf(+date.getDate()) !== -1;
+      default:
+        return false;
+  }
+  };
 }
