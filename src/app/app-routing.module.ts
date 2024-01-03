@@ -8,10 +8,6 @@ import { WeakdaysComponent } from './weakdays/weakdays.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: VishnuComponent,
-  },
-  {
     path: 'vishnu',
     component: VishnuComponent,
   },
@@ -24,7 +20,7 @@ const routes: Routes = [
     component: BaseComponent,
   },
   {
-    path: 'week',
+    path: '',
     component: WeakdaysComponent,
   }
 ];
