@@ -1,11 +1,25 @@
 <h3>Monthly Payroll</h3><br>
 <h3>Pay Schedule</h3><br>
 <mat-form-field>
-    <mat-label>Select date range</mat-label>
+    <mat-label>Pay Period End Date</mat-label>
+    <mat-select [(ngModel)]="rangeselectedPeriodDates">
+      <mat-option value="">Select a Pay Period</mat-option>
+      <mat-option value="1-LDM">1st-LDM</mat-option>
+    </mat-select>    
+  </mat-form-field>
+  <mat-form-field  style="margin-left: 30px;">
+    <input matInput [matDatepicker]="rangePeriodpicker" placeholder="Choose a dateRange" [(ngModel)]="rangeselectedPeriodDate" [matDatepickerFilter]=isDatePeriodrangeSelectable (ngModelChange)="handlerangeDatePeriodChange($event)"/>
+    <mat-datepicker-toggle matSuffix [for]="rangePeriodpicker"></mat-datepicker-toggle>
+    <mat-datepicker #rangePeriodpicker></mat-datepicker>
+  </mat-form-field><br>
+<mat-form-field>
+    <mat-label>Pay Date</mat-label>
     <mat-select [(ngModel)]="rangeselectedDates">
-      <mat-option value="">Select dateRange</mat-option>
-      <mat-option value="5-20-21-5">5-20 and 21-5</mat-option>
-      <mat-option value="6-20-21-5">6-20 and 21-5</mat-option>
+      <mat-option value="">Select a Pay Date</mat-option>
+      <mat-option value="25 of the current Month">25th of the current Month</mat-option>
+      <mat-option value="26 of the current Month">26th of the current Month</mat-option>
+      <mat-option value="1 of the Following Month">1st of the following Month</mat-option>
+      <mat-option value="2 of the Following Month">2nd of the following Month</mat-option>
     </mat-select>    
   </mat-form-field>
   <mat-form-field  style="margin-left: 30px;">
