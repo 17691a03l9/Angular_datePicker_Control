@@ -17,6 +17,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { VishnuComponent } from './vishnu/vishnu.component';
 import { WeakdaysComponent } from './weakdays/weakdays.component';
+import { SemiWeekdaysComponent } from './semi-weekdays/semi-weekdays.component';
+import { MonthlyComponent } from './monthly/monthly.component';
+import { SemiMonthlyComponent } from './semi-monthly/semi-monthly.component';
+import { DaterangecontrolButtonsComponent } from './daterangecontrol-buttons/daterangecontrol-buttons.component';
 
 // import { DatepickercontrolComponent } from './datepickercontrol/datepickercontrol.component';
 
@@ -27,6 +31,10 @@ import { WeakdaysComponent } from './weakdays/weakdays.component';
     BaseComponent,
     WeakdaysComponent,
     IndividualDatesComponent,
+    SemiWeekdaysComponent,
+    MonthlyComponent,
+    SemiMonthlyComponent,
+    DaterangecontrolButtonsComponent,
     // DatepickercontrolComponent
   ],
   imports: [

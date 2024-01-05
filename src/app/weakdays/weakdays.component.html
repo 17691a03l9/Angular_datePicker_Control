@@ -1,3 +1,5 @@
+<h3>Weekly Payroll</h3><br>
+<h3>Pay Schedule</h3><br>
 <mat-form-field>
   <mat-label>Select a Weekday</mat-label>
   <mat-select [(ngModel)]="selectedDates">
@@ -7,59 +9,39 @@
     <mat-option value="3">Wednesday</mat-option>
     <mat-option value="4">Thursday</mat-option>
     <mat-option value="5">Friday</mat-option>
-    <mat-option value="6">Saturday</mat-option>
-    <mat-option value="0">Sunday</mat-option>
   </mat-select>
 </mat-form-field>
 <mat-form-field style="margin-left: 30px;" >
     <input matInput [matDatepicker]="picker" placeholder="Choose a Weekday" [(ngModel)]="selectedDate" [matDatepickerFilter]="isDateSelectable" (ngModelChange)="handleDateChange($event)"/>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-<br>
-<mat-form-field>
-  <mat-label>Select a Weekday</mat-label>
-  <mat-select [(ngModel)]="selectedDays">
-    <mat-option value="">Select a Weekday</mat-option>
-    <mat-option value="1">Previous Monday</mat-option>
-    <mat-option value="11">Current Monday</mat-option>
-    <mat-option value="111">Next Monday</mat-option>
-    <mat-option value="2">Previous Tuesday</mat-option>
-    <mat-option value="22">Current Tuesday</mat-option>
-    <mat-option value="222">Next Tuesday</mat-option>
-    <mat-option value="3">Previous Wednesday</mat-option>
-    <mat-option value="33">Current Wednesday</mat-option>
-    <mat-option value="333">Next Wednesday</mat-option>
-    <mat-option value="4">Previous Thursday</mat-option>
-    <mat-option value="44">Current Thursday</mat-option>
-    <mat-option value="444">Next Thursday</mat-option>
-    <mat-option value="5">Previous Friday</mat-option>
-    <mat-option value="55">Current Friday</mat-option>
-    <mat-option value="555">Next Friday</mat-option>
-    <mat-option value="6">Previous Saturday</mat-option>
-    <mat-option value="66">Current Saturday</mat-option>
-    <mat-option value="666">Next Saturday</mat-option>
-    <mat-option value="0">Previous Sunday</mat-option>
-    <mat-option value="00">Current Sunday</mat-option>
-    <mat-option value="000">Next Sunday</mat-option>
-  </mat-select>
-  
-</mat-form-field>
-  <mat-form-field style="margin-left: 30px;">
-    <input matInput [matDatepicker]="pickers" placeholder="Choose a Weekday" [(ngModel)]="selectedDat" [matDatepickerFilter]="isDateSelect" (ngModelChange)="handleChange($event)"/>
-    <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
-    <mat-datepicker #pickers></mat-datepicker>
   </mat-form-field><br>
   <mat-form-field>
-    <mat-label>Select date range</mat-label>
-    <mat-select [(ngModel)]="rangeselectedDates">
-      <mat-option value="">Select dateRange</mat-option>
-      <mat-option value="5-20-21-5">5-20 and 21-5</mat-option>
-      <mat-option value="6-20-21-5">6-20 and 21-5</mat-option>
-    </mat-select>    
+
+    <mat-label>Select a Weekday</mat-label>
+    <mat-select [(ngModel)]="selectedDays">
+      <mat-option value="">Select a Weekday</mat-option>
+      <mat-option value="">Select a Weekday</mat-option>
+      <mat-option value="11">Current Monday</mat-option>
+      <mat-option value="22">Current Tuesday</mat-option>
+      <mat-option value="33">Current Wednesday</mat-option>
+      <mat-option value="44">Current Thursday</mat-option>
+      <mat-option value="55">Current Friday</mat-option>
+      <mat-option value="111">Next Monday</mat-option>
+      <mat-option value="222">Next Tuesday</mat-option>
+      <mat-option value="333">Next Wednesday</mat-option>
+      <mat-option value="444">Next Thursday</mat-option>
+      <mat-option value="555">Next Friday</mat-option>
+      <mat-option value="1">Previous Monday</mat-option>
+      <mat-option value="2">Previous Tuesday</mat-option>
+      <mat-option value="3">Previous Wednesday</mat-option>
+      <mat-option value="4">Previous Thursday</mat-option>
+      <mat-option value="5">Previous Friday</mat-option>
+    </mat-select>
+    
   </mat-form-field>
-  <mat-form-field  style="margin-left: 30px;">
-    <input matInput [matDatepicker]="rangepicker" placeholder="Choose a dateRange" [(ngModel)]="rangeselectedDate" [matDatepickerFilter]=isDaterangeSelectable (ngModelChange)="handlerangeDateChange($event)"/>
-    <mat-datepicker-toggle matSuffix [for]="rangepicker"></mat-datepicker-toggle>
-    <mat-datepicker #rangepicker></mat-datepicker>
-  </mat-form-field>
+    <mat-form-field style="margin-left: 30px;">
+      <input matInput [matDatepicker]="pickers" placeholder="Choose a Weekday" [(ngModel)]="selectedDat" [matDatepickerFilter]="isDateSelect" (ngModelChange)="handleChange($event)"/>
+      <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
+      <mat-datepicker #pickers></mat-datepicker>
+    </mat-form-field>

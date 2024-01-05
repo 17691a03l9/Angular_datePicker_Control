@@ -1,61 +1,26 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 
 import { DateFilterFn } from '@angular/material/datepicker';
 
 @Component({
-  selector: 'app-weakdays',
-  templateUrl: './weakdays.component.html',
-  styleUrls: ['./weakdays.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  selector: 'app-semi-weekdays',
+  templateUrl: './semi-weekdays.component.html',
+  styleUrls: ['./semi-weekdays.component.scss']
 })
-export class WeakdaysComponent implements OnInit{
+export class SemiWeekdaysComponent implements OnInit {
   selectedDates:String=""; // Default to 1-7 Days
   selectedDate:any;
   selectedDays:String=""; // Default to 1-7 Days
   selectedDat:any;
-  rangeselectedDates: string = ""; // Default to 1-7 Days
-  rangeselectedDate: any;
-  selectedFrequency: string = ''; // Add a property to track the selected frequency
-  Date: DateFilterFn<Date | null> = (date: Date | null) => true;
-
-  constructor(){
-  }
-  showWeekly(): void {
-    this.selectedFrequency = 'weekly';
-  }
-
-  showSemiWeekly(): void {
-    this.selectedFrequency = 'semi-weekly';
-  }
-
-  showMonthly(): void {
-    this.selectedFrequency = 'monthly';
-  }
-
-  showSemiMonthly(): void {
-    this.selectedFrequency = 'semi-monthly';
-  }
-
-
-  handlerangeDateChange(event: Date): void {
-    this.rangeselectedDate = event;
-    console.log(this.rangeselectedDate, "selectedDate");
+  handleChange(event: Date): void {
+    this.selectedDat = event;
+    console.log(this.selectedDate,"selectedDate")
   }
   handleDateChange(event: Date): void {
     this.selectedDate = event;
     console.log(this.selectedDate,"selectedDate")
   }
-  handleChange(event: Date): void {
-    this.selectedDat = event;
-    console.log(this.selectedDate,"selectedDate")
-  }
-
-  ngOnInit(): void {
-    
-  }
-
-
+  ngOnInit(): void {}
   isDateSelectable: DateFilterFn<Date | null> = (date: Date | null): boolean => {
     if (!this.selectedDates || !date) {
       return false;
@@ -131,27 +96,4 @@ export class WeakdaysComponent implements OnInit{
   private isDay(day: number, date: Date): boolean {
     return date.getDay() === day;
   }
-  isDaterangeSelectable: DateFilterFn<Date | null> = (date: Date | null):any => {
-    if (!this.rangeselectedDates || !date) {
-      return false;
-    }
-
-    const rangeParts = this.rangeselectedDates.split('-');
-    const startDay = parseInt(rangeParts[1]);
-    const endDay = parseInt(rangeParts[3]);
-
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth(); // January is 0 in JavaScript
-    const daysDifference = (date.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24);
-
-  console.log(currentMonth === startDay && date.getDate() === 20,(currentMonth + 1) % 12 === endDay && date.getDate() === 5,"currentMonth")
-  switch (this.rangeselectedDates) {
-    case '5-20-21-5':
-      return [startDay, endDay].indexOf(+date.getDate()) !== -1 && daysDifference>=0 && daysDifference<=31;
-    case '6-20-21-5':
-      return [startDay, endDay].indexOf(+date.getDate()) !== -1 && daysDifference>=31 && daysDifference<=62;
-      default:
-        return false;
-  }
-  };
 }

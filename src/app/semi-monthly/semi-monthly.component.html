@@ -1,0 +1,29 @@
+<h3>Semi-Monthly Payroll</h3><br>
+<h3>Pay Schedule</h3><br>
+<mat-form-field>
+    <mat-label>Pay Period End Date</mat-label>
+    <mat-select [(ngModel)]="rangeselectedDates">
+      <mat-option value="">Select dateRange</mat-option>
+      <mat-option value="5-20-21-5">5-20 and 21-5</mat-option>
+      <mat-option value="6-20-21-5">6-20 and 21-5</mat-option>
+    </mat-select>    
+  </mat-form-field>
+  <mat-form-field  style="margin-left: 30px;">
+    <input matInput [matDatepicker]="rangepicker" placeholder="Choose a dateRange" [(ngModel)]="rangeselectedDate" [matDatepickerFilter]=isDaterangeSelectable (ngModelChange)="handlerangeDateChange($event)"/>
+    <mat-datepicker-toggle matSuffix [for]="rangepicker"></mat-datepicker-toggle>
+    <mat-datepicker #rangepicker></mat-datepicker>
+  </mat-form-field><br>
+<mat-form-field>
+    <mat-label>Pay Date</mat-label>
+    <mat-select [(ngModel)]="rangeselectedPayDates">
+      <mat-option value="">Select a Pay Date</mat-option>
+      <mat-option value="16/1">16th/1st</mat-option>
+      <mat-option value="17/2">17th/2nd</mat-option>
+      <mat-option value="20/5">20th/5th</mat-option>
+    </mat-select>    
+  </mat-form-field>
+  <mat-form-field  style="margin-left: 30px;">
+    <input matInput [matDatepicker]="rangepickerPaydate" placeholder="Choose a dateRange" [(ngModel)]="rangeselectedPayDate" [matDatepickerFilter]=isPayDaterangeSelectable (ngModelChange)="handlerangePayDateChange($event)"/>
+    <mat-datepicker-toggle matSuffix [for]="rangepickerPaydate"></mat-datepicker-toggle>
+    <mat-datepicker #rangepickerPaydate></mat-datepicker>
+  </mat-form-field>
