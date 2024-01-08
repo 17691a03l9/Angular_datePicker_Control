@@ -2,19 +2,19 @@
 <h3>Pay Schedule</h3><br>
 <mat-form-field>
     <mat-label>Pay Period End Date</mat-label>
-    <mat-select [(ngModel)]="rangeselectedPeriodDates">
+    <mat-select [(ngModel)]="selectedDatePeriod">
       <mat-option value="">Select a Pay Period</mat-option>
       <mat-option value="1-LDM">1st-LDM</mat-option>
     </mat-select>    
   </mat-form-field>
   <mat-form-field  style="margin-left: 30px;">
-    <input matInput [matDatepicker]="rangePeriodpicker" placeholder="Choose a dateRange" [(ngModel)]="rangeselectedPeriodDate" [matDatepickerFilter]=isDatePeriodrangeSelectable (ngModelChange)="handlerangeDatePeriodChange($event)"/>
+    <input matInput [matDatepicker]="rangePeriodpicker" placeholder="Choose a dateRange" [(ngModel)]="enablingSelectedPayDate" [matDatepickerFilter]=enablingMonthlyPayEndDateFilter (ngModelChange)="handlePayEndDateChange($event)"/>
     <mat-datepicker-toggle matSuffix [for]="rangePeriodpicker"></mat-datepicker-toggle>
     <mat-datepicker #rangePeriodpicker></mat-datepicker>
   </mat-form-field><br>
 <mat-form-field>
     <mat-label>Pay Date</mat-label>
-    <mat-select [(ngModel)]="rangeselectedDates">
+    <mat-select [(ngModel)]="selectablePayDates">
       <mat-option value="">Select a Pay Date</mat-option>
       <mat-option value="25 of the current Month">25th of the current Month</mat-option>
       <mat-option value="26 of the current Month">26th of the current Month</mat-option>
@@ -23,7 +23,7 @@
     </mat-select>    
   </mat-form-field>
   <mat-form-field  style="margin-left: 30px;">
-    <input matInput [matDatepicker]="rangepicker" placeholder="Choose a dateRange" [(ngModel)]="rangeselectedDate" [matDatepickerFilter]=isDaterangeSelectable (ngModelChange)="handlerangeDateChange($event)"/>
+    <input matInput [matDatepicker]="rangepicker" placeholder="Choose a dateRange" [(ngModel)]="selectedPayDates" [matDatepickerFilter]=filterSelectedPayDates (ngModelChange)="handlePayDateChange($event)"/>
     <mat-datepicker-toggle matSuffix [for]="rangepicker"></mat-datepicker-toggle>
     <mat-datepicker #rangepicker></mat-datepicker>
   </mat-form-field>

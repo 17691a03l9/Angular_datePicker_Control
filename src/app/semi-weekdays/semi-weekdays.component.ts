@@ -8,31 +8,31 @@ import { DateFilterFn } from '@angular/material/datepicker';
   styleUrls: ['./semi-weekdays.component.scss']
 })
 export class SemiWeekdaysComponent implements OnInit {
-  selectedDates:String=""; // Default to 1-7 Days
-  selectedDate:any;
+  selectWeekDays:String=""; // Default to 1-7 Days
+  selectableWeekDay:any;
   selectedDays:String=""; // Default to 1-7 Days
-  selectedDat:any;
-  handleChange(event: Date): void {
-    this.selectedDat = event;
-    console.log(this.selectedDate,"selectedDate")
+  selectableSemiWeekDay:any;
+  handleSemiWeekDayChange(event: Date): void {
+    this.selectableSemiWeekDay = event;
+    console.log(this.selectableWeekDay,"selectableWeekDay")
   }
-  handleDateChange(event: Date): void {
-    this.selectedDate = event;
-    console.log(this.selectedDate,"selectedDate")
+  handleWeekDayChange(event: Date): void {
+    this.selectableWeekDay = event;
+    console.log(this.selectableWeekDay,"selectableWeekDay")
   }
   ngOnInit(): void {}
-  isDateSelectable: DateFilterFn<Date | null> = (date: Date | null): boolean => {
-    if (!this.selectedDates || !date) {
+  filterSelectableWeekDay: DateFilterFn<Date | null> = (date: Date | null): boolean => {
+    if (!this.selectWeekDays || !date) {
       return false;
     }
-    // const selectedDay = +this.selectedDates; // Convert selectedDates to a number
+    // const selectedDay = +this.selectWeekDays; // Convert selectWeekDays to a number
     // console.log(selectedDay,"selectedDay")
     // const isDaySelected = this.isDay(selectedDay, date);
     // console.log(isDaySelected,"isDaySelected")
 
     const today = new Date();
     const daysDifference = (date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
-    switch (this.selectedDates) {
+    switch (this.selectWeekDays) {
       case '1':
         return this.isDay(1, date) && daysDifference >= 0 && daysDifference <= 21;
       case '2':
@@ -47,11 +47,11 @@ export class SemiWeekdaysComponent implements OnInit {
         return false;
     }
   }
-  isDateSelect: DateFilterFn<Date | null> = (date: Date | null): boolean => {
+  filterSelectableSemiWeekDay: DateFilterFn<Date | null> = (date: Date | null): boolean => {
     if (!this.selectedDays || !date) {
       return false;
     }
-    // const selectedDay = +this.selectedDates; // Convert selectedDates to a number
+    // const selectedDay = +this.selectWeekDays; // Convert selectWeekDays to a number
     // console.log(selectedDay,"selectedDay")
     // const isDaySelected = this.isDay(selectedDay, date);
     // console.log(isDaySelected,"isDaySelected")

@@ -10,24 +10,24 @@ import { DateFilterFn } from '@angular/material/datepicker';
 export class SemiMonthlyComponent implements OnInit {
   ngOnInit(): void {
   }
-  rangeselectedDates: string = ""; // Default to 1-7 Days
+  selectPayPeriod: string = ""; // Default to 1-7 Days
   rangeselectedPayDates: string = ""; // Default to 1-7 Days
-  rangeselectedDate: any;
+  selectablePayPeriod: any;
   rangeselectedPayDate: any;
-  handlerangeDateChange(event: Date): void {
-    this.rangeselectedDate = event;
-    console.log(this.rangeselectedDate, "selectedDate");
+  handlePayPeriodChange(event: Date): void {
+    this.selectablePayPeriod = event;
+    console.log(this.selectablePayPeriod, "selectedDate");
   }
   handlerangePayDateChange(event: Date): void {
     this.rangeselectedPayDate = event;
     console.log(this.rangeselectedPayDate, "selectedDate");
   }
-  isDaterangeSelectable: DateFilterFn<Date | null> = (date: Date | null):any => {
-    if (!this.rangeselectedDates || !date) {
+  filterSelectablePayPeriod: DateFilterFn<Date | null> = (date: Date | null):any => {
+    if (!this.selectPayPeriod || !date) {
       return false;
     }
 
-    const rangeParts = this.rangeselectedDates.split('-');
+    const rangeParts = this.selectPayPeriod.split('-');
     const startDay = parseInt(rangeParts[1]);
     const endDay = parseInt(rangeParts[3]);
 
@@ -36,7 +36,7 @@ export class SemiMonthlyComponent implements OnInit {
     const daysDifference = (date.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24);
 
   console.log(currentMonth === startDay && date.getDate() === 20,(currentMonth + 1) % 12 === endDay && date.getDate() === 5,"currentMonth")
-  switch (this.rangeselectedDates) {
+  switch (this.selectPayPeriod) {
     case '5-20-21-5':
       return [startDay, endDay].indexOf(+date.getDate()) !== -1 && daysDifference>=0 && daysDifference<=31;
     case '6-20-21-5':

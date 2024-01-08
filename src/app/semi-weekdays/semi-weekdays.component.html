@@ -2,7 +2,7 @@
 <h3>Pay Schedule</h3><br>
 <mat-form-field>
     <mat-label>Select a Weekday</mat-label>
-    <mat-select [(ngModel)]="selectedDates">
+    <mat-select [(ngModel)]="selectWeekDays">
       <mat-option value="">Select a Weekday</mat-option>
       <mat-option value="1">Monday</mat-option>
       <mat-option value="2">Tuesday</mat-option>
@@ -12,7 +12,7 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field style="margin-left: 30px;" >
-      <input matInput [matDatepicker]="picker" placeholder="Choose a Weekday" [(ngModel)]="selectedDate" [matDatepickerFilter]="isDateSelectable" (ngModelChange)="handleDateChange($event)"/>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a Weekday" [(ngModel)]="selectableWeekDay" [matDatepickerFilter]="filterSelectableWeekDay" (ngModelChange)="handleWeekDayChange($event)"/>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field><br>
@@ -40,7 +40,7 @@
       
     </mat-form-field>
       <mat-form-field style="margin-left: 30px;">
-        <input matInput [matDatepicker]="pickers" placeholder="Choose a Weekday" [(ngModel)]="selectedDat" [matDatepickerFilter]="isDateSelect" (ngModelChange)="handleChange($event)"/>
+        <input matInput [matDatepicker]="pickers" placeholder="Choose a Weekday" [(ngModel)]="selectableSemiWeekDay" [matDatepickerFilter]="filterSelectableSemiWeekDay" (ngModelChange)="handleSemiWeekDayChange($event)"/>
         <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
         <mat-datepicker #pickers></mat-datepicker>
       </mat-form-field>

@@ -15,24 +15,24 @@ export class MonthlyComponent implements OnInit{
   ngOnInit(): void {
   console.log(this.lastDayOfMonth,"lastDayOfMonth")
   }
-  rangeselectedDates: string = ""; // Default to 1-7 Days
-  rangeselectedPeriodDates: string = ""; // Default to 1-7 Days
-  rangeselectedDate: any;
-  rangeselectedPeriodDate: any;
-  handlerangeDateChange(event: Date): void {
-    this.rangeselectedDate = event;
-    console.log(this.rangeselectedDate, "selectedDate");
+  selectablePayDates: string = ""; // Default to 1-7 Days
+  selectedDatePeriod: string = ""; // Default to 1-7 Days
+  selectedPayDates: any;
+  enablingSelectedPayDate: any;
+  handlePayDateChange(event: Date): void {
+    this.selectedPayDates = event;
+    console.log(this.selectedPayDates, "selectedDate");
   }
-  handlerangeDatePeriodChange(event: Date): void {
-    this.rangeselectedPeriodDate = event;
-    console.log(this.rangeselectedPeriodDate, "selectedDate");
+  handlePayEndDateChange(event: Date): void {
+    this.enablingSelectedPayDate = event;
+    console.log(this.enablingSelectedPayDate, "selectedDate");
   }
-  isDaterangeSelectable: DateFilterFn<Date | null> = (date: Date | null):any => {
-    if (!this.rangeselectedDates || !date) {
+  filterSelectedPayDates: DateFilterFn<Date | null> = (date: Date | null):any => {
+    if (!this.selectablePayDates || !date) {
       return false;
     }
 
-    const rangeParts = this.rangeselectedDates.split(' ');
+    const rangeParts = this.selectablePayDates.split(' ');
     const startDay = parseInt(rangeParts[0]);
     // const endDay = parseInt(rangeParts[3]);
   
@@ -41,7 +41,7 @@ export class MonthlyComponent implements OnInit{
     const daysDifference = (date.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24);
 
   // console.log(currentMonth === startDay && date.getDate() === 20,(currentMonth + 1) % 12 === endDay && date.getDate() === 5,"currentMonth")
-  switch (this.rangeselectedDates) {
+  switch (this.selectablePayDates) {
     case '25 of the current Month':
       return [startDay].indexOf(+date.getDate()) !== -1 && daysDifference>=0 && daysDifference<=31;
     case '26 of the current Month':
@@ -54,12 +54,12 @@ export class MonthlyComponent implements OnInit{
         return false;
   }
   };
-  isDatePeriodrangeSelectable: DateFilterFn<Date | null> = (date: Date | null):any => {
-    if (!this.rangeselectedPeriodDates || !date) {
+  enablingMonthlyPayEndDateFilter: DateFilterFn<Date | null> = (date: Date | null):any => {
+    if (!this.selectedDatePeriod || !date) {
       return false;
     }
 
-    const rangeParts = this.rangeselectedPeriodDates.split('-');
+    const rangeParts = this.selectedDatePeriod.split('-');
     const startDay:any = rangeParts[1];
  
     console.log(this.lastDayOfMonth,"LastDate")
@@ -68,7 +68,7 @@ export class MonthlyComponent implements OnInit{
     const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
     console.log(lastDayOfMonth.getDate())
 
-   if(this.rangeselectedPeriodDates){
+   if(this.selectedDatePeriod){
     if(startDay === "LDM"){
       return [lastDayOfMonth.getDate()].indexOf(+date.getDate()) !== -1 && daysDifference>=0 && daysDifference<=31;
     }else{
@@ -76,11 +76,6 @@ export class MonthlyComponent implements OnInit{
 
     }
    }
-  // switch (this.rangeselectedPeriodDates) {
-  //   case '1-LDM':
-  //     return [startDay].indexOf(+date.getDate()) !== -1 && daysDifference>=0 && daysDifference<=31;
-  //     default:
-  //       return false;
-  // }
+
   };
 }

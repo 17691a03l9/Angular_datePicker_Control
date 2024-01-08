@@ -18,7 +18,7 @@ export class DaterangecontrolButtonsComponent {
   showSemiWeekly(): void {
     this.router.navigate(['/semi-weekdays']);
 
-    this.selectedFrequency = 'semi-weekly';
+    // this.selectedFrequency = 'semi-weekly';
   }
 
   showMonthly(): void {

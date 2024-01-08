@@ -10,10 +10,10 @@ import { DateFilterFn } from '@angular/material/datepicker';
   encapsulation: ViewEncapsulation.None,
 })
 export class WeakdaysComponent implements OnInit{
-  selectedDates:String=""; // Default to 1-7 Days
-  selectedDate:any;
+  selectWeekDays:String=""; // Default to 1-7 Days
+  selectedWeekDay:any;
   selectedDays:String=""; // Default to 1-7 Days
-  selectedDat:any;
+  selectableDay:any;
   rangeselectedDates: string = ""; // Default to 1-7 Days
   rangeselectedDate: any;
   selectedFrequency: string = ''; // Add a property to track the selected frequency
@@ -40,15 +40,15 @@ export class WeakdaysComponent implements OnInit{
 
   handlerangeDateChange(event: Date): void {
     this.rangeselectedDate = event;
-    console.log(this.rangeselectedDate, "selectedDate");
+    // console.log(this.rangeselectedDate, "selectedDate");
   }
-  handleDateChange(event: Date): void {
-    this.selectedDate = event;
-    console.log(this.selectedDate,"selectedDate")
+  handleWeekDayChange(event: Date): void {
+    this.selectedWeekDay = event;
+    // console.log(this.selectedWeekDay,"selectedDate")
   }
   handleChange(event: Date): void {
-    this.selectedDat = event;
-    console.log(this.selectedDate,"selectedDate")
+    this.selectableDay = event;
+    // console.log(this.selectedWeekDay,"selectedDate")
   }
 
   ngOnInit(): void {
@@ -56,18 +56,20 @@ export class WeakdaysComponent implements OnInit{
   }
 
 
-  isDateSelectable: DateFilterFn<Date | null> = (date: Date | null): boolean => {
-    if (!this.selectedDates || !date) {
+  filterSelectedWeekDay: DateFilterFn<Date | null> = (date: Date | null): boolean => {
+    if (!this.selectWeekDays || !date) {
       return false;
     }
-    // const selectedDay = +this.selectedDates; // Convert selectedDates to a number
+    // const selectedDay = +this.selectWeekDays; // Convert selectWeekDays to a number
     // console.log(selectedDay,"selectedDay")
     // const isDaySelected = this.isDay(selectedDay, date);
     // console.log(isDaySelected,"isDaySelected")
 
-    const today = new Date();
+    // const today = new Date();
+    const today = new Date("Wed Jan 17 2024 15:25:15 GMT+0530 (India Standard Time)");
+    console.log(today);
     const daysDifference = (date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
-    switch (this.selectedDates) {
+    switch (this.selectWeekDays) {
       case '1':
         return this.isDay(1, date) && daysDifference >= 0 && daysDifference <= 21;
       case '2':
@@ -82,11 +84,11 @@ export class WeakdaysComponent implements OnInit{
         return false;
     }
   }
-  isDateSelect: DateFilterFn<Date | null> = (date: Date | null): boolean => {
+  filterSelectableDay: DateFilterFn<Date | null> = (date: Date | null): boolean => {
     if (!this.selectedDays || !date) {
       return false;
     }
-    // const selectedDay = +this.selectedDates; // Convert selectedDates to a number
+    // const selectedDay = +this.selectWeekDays; // Convert selectWeekDays to a number
     // console.log(selectedDay,"selectedDay")
     // const isDaySelected = this.isDay(selectedDay, date);
     // console.log(isDaySelected,"isDaySelected")
