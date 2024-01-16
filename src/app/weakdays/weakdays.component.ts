@@ -60,15 +60,17 @@ export class WeakdaysComponent implements OnInit{
     if (!this.selectWeekDays || !date) {
       return false;
     }
+    console.log(date,"date")
     // const selectedDay = +this.selectWeekDays; // Convert selectWeekDays to a number
     // console.log(selectedDay,"selectedDay")
     // const isDaySelected = this.isDay(selectedDay, date);
     // console.log(isDaySelected,"isDaySelected")
 
     // const today = new Date();
-    const today = new Date("Wed Jan 17 2024 15:25:15 GMT+0530 (India Standard Time)");
-    console.log(today);
+    const today = new Date();
+    console.log(date.getTime()/(1000 * 60 * 60 * 24),"date.getTime");
     const daysDifference = (date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
+    console.log(daysDifference,"daydifferenece")
     switch (this.selectWeekDays) {
       case '1':
         return this.isDay(1, date) && daysDifference >= 0 && daysDifference <= 21;

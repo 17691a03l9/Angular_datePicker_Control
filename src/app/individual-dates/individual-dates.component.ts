@@ -1,53 +1,5 @@
-// import { Component, OnInit } from '@angular/core';
-
-// import { DateFilterFn } from '@angular/material/datepicker';
-
-// @Component({
-//   selector: 'app-individual-dates',
-//   templateUrl: './individual-dates.component.html',
-//   styleUrls: ['./individual-dates.component.scss']
-// })
-// export class IndividualDatesComponent implements OnInit{
-//   selectedDates:String=""; // Default to 1-7 Days
-//   selectedDate:any;
-//   Date: DateFilterFn<Date | null> = (date: Date | null) => true;
-
-//   constructor(){
-//   }
-//   handleDateChange(event: Date): void {
-//     this.selectedDate = event;
-//     console.log(this.selectedDate,"selectedDate")
-//   }
-
-//   ngOnInit(): void {
-    
-//   }
-
-
-//   isDateSelectable: DateFilterFn<Date | null> = (date: Date | null): boolean => {
-//     if (!this.selectedDates || !date) {
-//       return false;
-//     }
-
-//     const today = new Date();
-//     const rangeParts = this.selectedDates.split('-');
-//     const startDay = parseInt(rangeParts[1]);
-//     const endDay = parseInt(rangeParts[3]);
-//    console.log(startDay,"startDay", endDay, "endDay")
-//     const startDate = new Date(today.setDate(startDay));
-//     const endDate = new Date(today.setDate(endDay));
-//     console.log(startDate,"startDay", endDate, "endDay")
-
-//     return date >= startDate && date <= endDate;
-//   }
-//   // private isDay(day: number, date: Date): boolean {
-//   //   return date.getDay() === day;
-//   // }
-// }
-
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
-import { DateFilterFn } from '@angular/material/datepicker';
+import { DateFilterFn, MatCalendarCellCssClasses, MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-individual-dates',
@@ -56,4 +8,50 @@ import { DateFilterFn } from '@angular/material/datepicker';
   encapsulation: ViewEncapsulation.None,
 })
 export class IndividualDatesComponent implements OnInit {
-  ngOnInit(): void {}}
+  ngOnInit(): void {
+  }
+  selectWeekDays:any;
+  nextOccurrences: Date[] = [];
+  remainingoccurances: Date[] = [];
+  remainingdaysoccurances: any[] = [];
+
+  private isDay(day: number, event: Date): boolean {
+    return event.getDay() === day;
+  }
+  handleWeekDayChange(event: Date): void {
+    const selectedDay = this.selectWeekDays;
+    const today = new Date();
+    const daysUntilNextOccurrence = (selectedDay - today.getDay() + 7) % 7; // Calculate days until next occurrence
+
+    this.nextOccurrences = []; // Clear the array before populating with new dates
+    this.remainingoccurances = []; // Clear the array before populating with new dates
+
+    for (let i = 0; i < 3; i++) {
+      const nextOccurrence = new Date(today);
+      nextOccurrence.setDate(today.getDate() + daysUntilNextOccurrence + i * 7);
+      this.nextOccurrences.push(nextOccurrence);
+    }
+    for(let i=-20;i<1000;i++){
+      const nextOccurrence = new Date(today);
+      nextOccurrence.setDate(today.getDate()+i);
+       this.remainingoccurances.push(nextOccurrence)
+    }
+
+    // console.log(this.nextOccurrences)
+    // const remainingDays = this.remainingoccurances.map(date => date.toDateString())
+    console.log(this.remainingoccurances.map(date => date.toDateString()))
+    // Exclude the next three occurrences
+ const selectedOccurances = this.nextOccurrences.map(date => date.toDateString());
+
+  // Filter out selected occurrences from remaining occurrences
+  const remainingDays = this.remainingoccurances
+    .filter(date => !selectedOccurances.includes(date.toDateString()))
+    .map(date => date.toDateString());
+
+  console.log(remainingDays);
+    console.log(this.nextOccurrences.map(date => date.toDateString()));
+
+
+  }
+
+}

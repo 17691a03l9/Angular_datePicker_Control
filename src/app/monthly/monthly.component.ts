@@ -66,7 +66,9 @@ export class MonthlyComponent implements OnInit{
     const currentDate = new Date();
     const daysDifference = (date.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24);
     const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-    console.log(lastDayOfMonth.getDate())
+    const lastDayOfMont = new Date(currentDate);
+    console.log(lastDayOfMont,0,"currentdate")
+    // console.log(lastDayOfMonth.getDate(),date)
 
    if(this.selectedDatePeriod){
     if(startDay === "LDM"){

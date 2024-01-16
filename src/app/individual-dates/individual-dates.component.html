@@ -1,0 +1,13 @@
+<h3>semi-weekly payRoll</h3><br>
+<h3>Pay Schedule</h3><br>
+<mat-form-field>
+    <mat-label>Select a Weekday</mat-label>
+    <mat-select [(ngModel)]="selectWeekDays"  (ngModelChange)="handleWeekDayChange($event)">
+      <mat-option value="">Select a Weekday</mat-option>
+      <mat-option value="1">Monday</mat-option>
+      <mat-option value="2">Tuesday</mat-option>
+      <mat-option value="3">Wednesday</mat-option>
+      <mat-option value="4">Thursday</mat-option>
+      <mat-option value="5">Friday</mat-option>
+    </mat-select>
+  </mat-form-field>
